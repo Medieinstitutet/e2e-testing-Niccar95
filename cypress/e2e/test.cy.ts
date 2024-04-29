@@ -67,33 +67,6 @@ describe("Testing input and submit", () => {
   it("should give a status code of 500", () => {
     cy.intercept("GET", "http://omdbapi.com/*", {
       statusCode: 500,
-      body: {
-        Search: [
-          {
-            Title: "Harry Potter 1",
-            imdbID: "bsdsds",
-            Type: "dddd",
-            Poster: "fdjf",
-            Year: "1990",
-          },
-
-          {
-            Title: "Harry Potter 2",
-            imdbID: "bsdsds",
-            Type: "dddd",
-            Poster: "fdjf",
-            Year: "2001",
-          },
-
-          {
-            Title: "Harry Potter 3",
-            imdbID: "bsdsds",
-            Type: "dddd",
-            Poster: "fdjf",
-            Year: "2001",
-          },
-        ],
-      },
     });
 
     cy.get("#searchText").type("Harry Potter");
@@ -103,7 +76,5 @@ describe("Testing input and submit", () => {
     cy.get("div#movie-container").find("div.movie").should("have.length", 0);
 
     cy.get("p").should("contain", "Inga sökresultat att visa");
-
-    //lägga till text som säger inga sökresultat att visas
   });
 });
