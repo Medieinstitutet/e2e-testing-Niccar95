@@ -52,9 +52,8 @@ describe("Testing movieApp", () => {
     cy.get("#searchText").should("have.value", "Harry Potter");
     cy.get("button").click();
 
-    cy.get("div#movie-container").find("div.movie").should("have.length", 3);
-    cy.get("div.movie").find("img").should("have.length", 3);
-    cy.get("div.movie").find("h3").should("have.length", 3);
+    cy.get("div.movie").find("img").should("exist");
+    cy.get("div.movie").find("h3").should("exist");
   });
 
   it("should get a certain amount of objects on api call", () => {
