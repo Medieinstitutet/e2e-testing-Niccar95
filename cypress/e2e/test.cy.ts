@@ -1,10 +1,3 @@
-describe("testing url", () => {
-  it("passes", () => {
-    cy.visit("http://localhost:5173");
-    cy.intercept("http://omdbapi.com/*");
-  });
-});
-
 describe("Testing movieApp", () => {
   beforeEach(() => {
     cy.visit("/");
@@ -43,7 +36,6 @@ describe("Testing movieApp", () => {
     cy.get("#searchText").type("Harry Potter");
 
     cy.get("#searchText").should("have.value", "Harry Potter");
-    cy.get("button").click();
   });
 
   it("movie-container should have movie elements after submit", () => {
@@ -53,6 +45,16 @@ describe("Testing movieApp", () => {
     cy.get("button").click();
     cy.get("div#movie-container").find("div.movie").should("exist");
     cy.get("div#movie-container").find("div.movie").should("have.length", 3);
+  });
+
+  it("Movie containers should contain h3 and img", () => {
+    cy.get("#searchText").type("Harry Potter");
+    cy.get("#searchText").should("have.value", "Harry Potter");
+    cy.get("button").click();
+
+    cy.get("div#movie-container").find("div.movie").should("have.length", 3);
+    cy.get("div.movie").find("img").should("have.length", 3);
+    cy.get("div.movie").find("h3").should("have.length", 3);
   });
 
   it("should get a certain amount of objects on api call", () => {
