@@ -5,7 +5,7 @@ describe("testing url", () => {
   });
 });
 
-describe("Testing input and submit", () => {
+describe("Testing movieApp", () => {
   beforeEach(() => {
     cy.visit("/");
     cy.intercept("GET", "http://omdbapi.com/*", {
